@@ -4,12 +4,17 @@ const apiURLS = {
   search: 'https://api.mercadolibre.com/sites/MLA/search?q=',
   itemDetail: 'https://api.mercadolibre.com/items/',
 };
+const author = {
+  name: 'Kerlis Alexandra',
+  lastname: 'Aguado Pacheco',
+};
 
 exports.getProductsList = query => {
   return search(query).then(response => {
     const categories = filterCategories(response.filters);
     const items = filterItems(response.results);
     return {
+      author,
       categories,
       items,
     };
@@ -23,7 +28,7 @@ function filterCategories(filters) {
 }
 
 function filterItems(results) {
-  return results.map(item => {
+  return results.slice(0,10).map(item => {
     const [amount, decimals] = item.price.toString().split('.');
     return {
       id: item.id,
@@ -36,6 +41,7 @@ function filterItems(results) {
       picture: item.thumbnail,
       condition: item.condition,
       free_shipping: item.shipping.free_shipping,
+      adress: item.address.state_name
     };
   });
 }
@@ -45,6 +51,7 @@ exports.getProductDetail = query => {
     const [item, description] = responses;
     const [amount, decimals] = item.price.toString().split('.');
     return {
+      author,
       item: {
         id: item.id,
         title: item.title,
@@ -53,7 +60,7 @@ exports.getProductDetail = query => {
           amount: parseInt(amount),
           decimals: parseInt(decimals),
         },
-        picture: item.thumbnail,
+        picture: item.pictures[0].url,
         condition: item.condition,
         free_shipping: item.shipping.free_shipping,
         sold_quantity: item.sold_quantity,

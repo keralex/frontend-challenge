@@ -4,13 +4,13 @@ import {
   Route, 
   Switch, 
   Link,
-  useLocation
+  useLocation,
+  withRouter
   // Redirect
 } from 'react-router-dom';
 
 // Components 
 import SearchResult from '../components/searchResult';
-import Nav from '../components/nav';
 //Buscar los parametros que la url actual pueda proporcionar
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -19,8 +19,12 @@ function useQuery() {
 //main page
 const MainPage = () =>  {
   let query = useQuery();
-    return <Router>
+    return(
+      <div className="searchResultPage">
+
         <SearchResult search={query.get("search")}/>
-    </Router>
+      </div>
+    ) 
+    
 }
-export default MainPage;
+export default withRouter(MainPage)

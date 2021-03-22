@@ -5,8 +5,8 @@ const server = require('./server');
 const app = express();
 app.use(cors());
 
-app.get('/api/products', (req, res) => {
-  server.getProductsList(req.query.search)
+app.get('/api/items', (req, res) => {
+  server.getProductsList(req.query.q)
     .then(items => res.json(items))
     .catch(error => res.status(500).send(error));
 });

@@ -1,0 +1,73 @@
+
+body {
+    background-color: #EBEBEB;
+    .searchResultPage {
+        .grid {
+            width: 70%;
+            height: auto;
+            background-color: white;
+            margin: 0 auto;
+            margin-top: 3rem;
+            // padding: 0.5rem;
+            margin-bottom: 3rem;
+            a {
+                text-decoration: none;
+                &:nth-last-child(1) {
+                    .gridProduct {
+                        border-bottom: none;
+                    }
+                }
+                .gridProduct {
+                    margin: 1rem 1.5rem;
+                    border-bottom: 1px solid rgb(212, 212, 212);
+                    display: flex;
+                    color: black;
+                    min-height: 180px;
+                    flex-wrap: wrap;
+                    &-image {
+                        width: 180px;
+                        height: 180px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        img {
+                            max-height:100%;
+                             max-width:100%;
+                        }
+                    }
+                    &-info {
+                        margin-left: 1rem;
+                        width: 50%;
+                        .price {
+                            font-size: 1.5rem;
+                            margin-bottom: 1rem;
+                            margin-top: 1rem;
+                            position: relative;
+                            .cucarda-Free-shipping {
+                                background-image: url('./../../assets/ic_shipping.png');
+                                height: 5px;
+                                width: 5px;
+                                margin-top: 1rem;
+                                padding: 9px;
+                                background-repeat: no-repeat;
+                                position:absolute;
+                                top: -7px ;
+                                margin-left: 0.5rem;
+
+                            }
+                        }
+                        .title {
+                        }
+                    } //info
+                    &-adress {
+                        font-size: 0.8rem;
+                        color: rgb(102, 102, 102);
+                        margin-top: 2rem;
+                        width: 20%;
+                        text-align: right;
+                    }
+                }  // gridProduct
+            }
+        } //grid
+    }
+}
